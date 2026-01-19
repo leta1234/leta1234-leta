@@ -3,52 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Royal Archive | 顶级奢侈品私人定制画册</title>
-    <meta name="description" content="Royal Archive 专注于全球顶级奢侈品艺术杰作，提供 1:1 原厂级材质私人定制与全球匿名交付。">
+    <title>Royal Archive | 顶级奢侈品私人定制</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              serif: ['"Playfair Display"', 'serif'],
-              sans: ['"Inter"', 'sans-serif'],
-            },
-            colors: {
-              brand: {
-                gold: '#C5A059',
-                dark: '#080808',
-                light: '#F9F8F4',
-              }
-            }
-          }
-        }
-      }
-    </script>
-    <style>
-      html {
-        scroll-behavior: smooth;
-        -webkit-font-smoothing: antialiased;
-      }
-      body {
-        background-color: #080808;
-        color: #F9F8F4;
-        margin: 0;
-      }
-      ::-webkit-scrollbar {
-        width: 4px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #080808;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #C5A059;
-        border-radius: 10px;
-      }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <script type="importmap">
 {
   "imports": {
@@ -56,15 +13,38 @@
     "react-dom": "https://esm.sh/react-dom@19.0.0",
     "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
     "lucide-react": "https://esm.sh/lucide-react@0.473.0",
-    "framer-motion": "https://esm.sh/framer-motion@11.15.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "framer-motion": "https://esm.sh/framer-motion@^12.27.0",
     "@react-three/fiber": "https://esm.sh/@react-three/fiber@^9.5.0",
     "@react-three/drei": "https://esm.sh/@react-three/drei@^10.7.7",
-    "three": "https://esm.sh/three@^0.182.0",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-    "react/": "https://esm.sh/react@^19.2.3/"
+    "three": "https://esm.sh/three@^0.182.0"
   }
 }
 </script>
+    <style>
+      body { 
+        background: #080808; 
+        margin: 0; 
+        font-family: 'Inter', sans-serif; 
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      .font-serif { font-family: 'Playfair Display', serif; }
+      
+      /* 极致轻量的金色微光动画 */
+      @keyframes shimmer {
+        0% { opacity: 0.3; }
+        50% { opacity: 0.7; }
+        100% { opacity: 0.3; }
+      }
+      .shimmer-text { animation: shimmer 4s infinite; }
+      
+      /* 自定义滚动条 - 适配黑金风格 */
+      ::-webkit-scrollbar { width: 4px; }
+      ::-webkit-scrollbar-track { background: #080808; }
+      ::-webkit-scrollbar-thumb { background: #C5A059; border-radius: 10px; }
+    </style>
   </head>
   <body>
     <div id="root"></div>
