@@ -1,182 +1,127 @@
 import React, { useState, useEffect } from 'react';
 import * as Lucide from 'lucide-react';
 
-// 社交链接组件
-const SocialLink = ({ icon: IconName, label, href, subLabel, brandColor, iconFill }: { icon: string, label: string, href: string, subLabel: string, brandColor: string, iconFill?: string }) => {
-  const Icon = (Lucide as any)[IconName];
-  return (
-    <a 
-      href={href} 
-      target="_blank" 
-      rel="noopener noreferrer"
-      className={`flex items-center p-5 rounded-2xl text-white shadow-xl transition-all active:scale-95 ${brandColor}`}
-    >
-      <div className="bg-white/20 p-3 rounded-xl mr-4">
-        {Icon && <Icon size={26} fill={iconFill || "white"} className="text-white" />}
-      </div>
-      <div className="flex-1 text-left">
-        <div className="font-bold text-lg tracking-tight leading-none uppercase">{label}</div>
-        <div className="text-[10px] font-medium uppercase tracking-widest mt-1 opacity-80">{subLabel}</div>
-      </div>
-      <Lucide.ChevronRight size={20} className="opacity-40" />
-    </a>
-  );
-};
-
 const App: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
+    setIsLoaded(true);
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#080808] text-[#F9F8F4] font-sans pb-40 selection:bg-[#C5A059] overflow-x-hidden">
-      
-      {/* 高端极简导航 */}
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6 py-4 flex justify-between items-center ${scrolled ? 'bg-black/90 backdrop-blur-xl border-b border-[#C5A059]/10 shadow-2xl' : 'bg-transparent'}`}>
-        <div className="flex flex-col">
-          <h1 className="font-serif font-black text-xl tracking-tighter leading-none text-white italic">
-            ROYAL<span className="text-[#C5A059]">ARCHIVE</span>
-          </h1>
-          <span className="text-[7px] tracking-[0.5em] text-stone-500 font-bold uppercase mt-1">Master Atelier</span>
-        </div>
-        <div className="flex items-center gap-2 bg-stone-900/50 border border-stone-800 px-3 py-1.5 rounded-full">
-          <div className="w-1.5 h-1.5 bg-[#C5A059] rounded-full animate-pulse"></div>
-          <span className="text-[9px] font-bold uppercase tracking-widest text-[#C5A059]">Privé Access</span>
+    <div className={`min-h-screen bg-[#080808] text-[#F9F8F4] transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}>
+      {/* Navigation */}
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6 py-6 flex justify-between items-center ${scrolled ? 'bg-black/90 backdrop-blur-md py-4 border-b border-white/5' : 'bg-transparent'}`}>
+        <h1 className="font-serif font-bold text-2xl tracking-tighter italic">
+          ROYAL<span className="text-[#C5A059] not-italic ml-1">ARCHIVE</span>
+        </h1>
+        <div className="flex items-center gap-2 border border-[#C5A059]/30 bg-black/40 px-3 py-1.5 rounded-full text-[10px] text-[#C5A059] uppercase tracking-[0.2em]">
+          <div className="w-1.5 h-1.5 bg-[#C5A059] rounded-full animate-pulse"></div> 
+          Privé Access
         </div>
       </header>
 
-      {/* 首页视觉区 */}
-      <section className="relative h-[85vh] w-full overflow-hidden flex items-end">
-        <img 
-          src="https://images.unsplash.com/photo-1585123334904-845d60e97b29?auto=format&fit=crop&q=80&w=1200" 
-          alt="Prestige Collection" 
-          className="absolute inset-0 w-full h-full object-cover brightness-[0.45] scale-100"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-black/20"></div>
+      {/* Hero Section */}
+      <section className="relative h-screen flex items-center overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <img 
+            src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&q=60&w=1200" 
+            className="w-full h-full object-cover brightness-[0.35] scale-105"
+            alt="Luxury"
+            loading="eager"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#080808]/20 to-[#080808]"></div>
+        </div>
         
-        <div className="relative z-10 p-8 w-full mb-12">
-          <div className="inline-flex items-center gap-2 mb-4 bg-white/5 backdrop-blur-md px-4 py-1.5 border border-white/10 rounded-sm">
-            <Lucide.Gem className="text-[#C5A059]" size={14} />
-            <span className="text-white text-[9px] font-bold tracking-[0.4em] uppercase">Private Selection • MMXXIV</span>
+        <div className="relative z-10 px-8 max-w-3xl">
+          <div className="inline-flex items-center gap-3 mb-8">
+            <div className="h-[1px] w-8 bg-[#C5A059]"></div>
+            <span className="text-[10px] text-[#C5A059] uppercase tracking-[0.4em] font-bold shimmer-text">Haute Couture Collection</span>
           </div>
-          <h2 className="text-5xl font-serif font-light italic tracking-tight leading-[1] text-white uppercase mb-6">
-            Elegance <br/>
-            <span className="font-bold text-[#C5A059] not-italic text-6xl">Redefined.</span>
+          <h2 className="text-6xl md:text-8xl font-serif italic leading-[1.05] mb-10">
+            Timeless <br/>
+            <span className="text-[#C5A059] not-italic font-bold">Heritage.</span>
           </h2>
-          <div className="border-l-2 border-[#C5A059] pl-5">
-            <p className="max-w-[260px] text-stone-400 text-[10px] font-medium tracking-[0.15em] leading-relaxed uppercase opacity-90">
-              专注于全球顶级艺术杰作，以原厂级材质标准，为您重塑经典美学。
-            </p>
+          <p className="text-stone-400 text-sm md:text-base max-w-md leading-relaxed mb-10 border-l border-[#C5A059]/40 pl-6">
+            不仅仅是复刻，更是对工匠精神的传承。我们采用原厂进口皮料，坚持每一针每一线的匠心打磨，为您开启通往极致品味的私密之门。
+          </p>
+          <div className="flex flex-wrap gap-6 text-[9px] uppercase tracking-[0.3em] font-bold text-[#C5A059]/60">
+            <span>● 1:1 Original</span>
+            <span>● Global Shipping</span>
+            <span>● Full Packaging</span>
           </div>
         </div>
       </section>
 
-      {/* 核心动作区 */}
-      <section className="px-6 -mt-24 relative z-20 space-y-6">
+      {/* Links Grid */}
+      <section className="px-6 -mt-20 relative z-20 space-y-6 max-w-4xl mx-auto pb-48">
         
-        {/* 产品画册按钮 */}
+        {/* Main Catalog - High Contrast */}
         <a 
-          href="https://your-catalog.com" 
+          href="https://your-catalog-link.com" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="group relative flex flex-col items-center justify-center py-10 px-8 rounded-[2.5rem] bg-gradient-to-br from-[#1c1c1c] via-[#0a0a0a] to-[#141414] border-[1.5px] border-[#C5A059]/40 shadow-[0_40px_80px_-15px_rgba(197,160,89,0.5)] active:scale-[0.97] transition-all overflow-hidden"
+          className="group block relative p-px rounded-[2.5rem] bg-gradient-to-b from-[#C5A059]/40 to-transparent transition-all duration-700 hover:from-[#C5A059]"
         >
-          <div className="absolute inset-0 border-2 border-[#C5A059] opacity-20 rounded-[2.5rem] animate-pulse"></div>
-          <div className="relative z-10 flex flex-col items-center gap-4 text-center">
-            <div className="bg-[#C5A059] p-6 rounded-full shadow-[0_0_40px_rgba(197,160,89,0.4)] group-hover:scale-110 transition-transform duration-700">
-              <Lucide.BookOpen size={48} className="text-black" strokeWidth={1.5} />
+          <div className="relative p-10 md:p-16 rounded-[2.5rem] bg-[#0d0d0d] border border-white/5 text-center overflow-hidden">
+            <div className="absolute top-0 right-0 p-8 opacity-[0.03] group-hover:opacity-[0.07] transition-opacity">
+              <Lucide.Crown size={200} />
             </div>
-            <div>
-              <h3 className="font-serif font-bold text-3xl tracking-tighter uppercase leading-none text-white italic mb-2">Master Gallery</h3>
-              <p className="text-[11px] font-bold text-[#C5A059] uppercase tracking-[0.3em] flex items-center justify-center gap-2">
-                <span className="w-1.5 h-1.5 bg-[#C5A059] rounded-full animate-ping"></span>
-                在线选购时尚画册 (2000+)
-              </p>
+            <div className="relative z-10">
+              <div className="bg-[#C5A059] w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-8 shadow-2xl shadow-[#C5A059]/20 group-hover:scale-110 transition-transform duration-500">
+                <Lucide.LayoutGrid size={32} className="text-black" />
+              </div>
+              <h3 className="font-serif text-4xl italic mb-4 tracking-tight">The Digital Vault</h3>
+              <p className="text-[#C5A059] text-[10px] font-bold tracking-[0.4em] uppercase mb-8">在线画册预览 (2025 全新系列)</p>
+              <div className="inline-flex items-center gap-3 px-8 py-3 bg-white/5 rounded-full text-white/50 text-[10px] font-bold tracking-widest uppercase group-hover:bg-[#C5A059] group-hover:text-black transition-all">
+                Enter Private Gallery <Lucide.ArrowUpRight size={14} />
+              </div>
             </div>
-          </div>
-          <div className="mt-6 flex items-center gap-1 text-white/40 text-[9px] font-bold tracking-[0.2em] uppercase text-center">
-            Tap to Explore Exclusive Collection <Lucide.ArrowUpRight size={14} />
           </div>
         </a>
 
-        {/* 社交链接矩阵 */}
-        <div className="space-y-4 pt-2">
-          <SocialLink 
-            icon="MessageCircle" 
-            label="WhatsApp 专属垂询" 
-            subLabel="Expert Consultation & 4K Preview" 
-            href="https://wa.me/YOUR_NUMBER" 
-            brandColor="bg-[#25D366] shadow-[0_15px_40px_-10px_rgba(37,211,102,0.4)]"
-            iconFill="white"
-          />
-          <SocialLink 
-            icon="Instagram" 
-            label="Instagram 灵感" 
-            subLabel="Daily Curated Masterpieces" 
-            href="https://instagram.com/YOUR_PROFILE" 
-            brandColor="bg-gradient-to-tr from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] shadow-[0_15px_40px_-10px_rgba(238,42,123,0.3)]" 
-          />
-          <SocialLink 
-            icon="Send" 
-            label="Telegram 私域" 
-            subLabel="Confidential New Arrivals" 
-            href="https://t.me/YOUR_USERNAME" 
-            brandColor="bg-[#0088CC] shadow-[0_15px_40px_-10px_rgba(0,136,204,0.3)]" 
-            iconFill="white"
-          />
-        </div>
-      </section>
-
-      {/* 品牌背书 */}
-      <section className="mt-24 px-8 py-20 bg-[#F9F8F4] text-black rounded-t-[3rem]">
-        <div className="text-center mb-16">
-          <h3 className="font-serif text-3xl font-light italic tracking-tight uppercase mb-2">The Archive <span className="font-bold text-[#C5A059]">Oath</span></h3>
-          <div className="w-12 h-1 bg-[#C5A059] mx-auto rounded-full"></div>
-        </div>
-        <div className="space-y-12 max-w-lg mx-auto">
-          {[
-            { icon: Lucide.Award, title: "高定级材质标准", desc: "严选 904L 精钢、原厂代工级皮料及瑞士定制机芯。" },
-            { icon: Lucide.Camera, title: "发货前 4K 验货", desc: "出库前通过 WhatsApp 提供微距超清核对。满意后再开启交付。" },
-            { icon: Lucide.Package, title: "隐私配送保障", desc: "成熟隐形物流链路，安全通过全球海关，如遇特殊情况 100% 保障。" }
-          ].map((item, idx) => (
-            <div key={idx} className="flex gap-6 items-start">
-              <div className="bg-white p-4 rounded-2xl shadow-xl shrink-0 border border-stone-100">
-                <item.icon size={26} className="text-[#C5A059]" strokeWidth={1.5} />
-              </div>
-              <div>
-                <h4 className="font-bold uppercase tracking-widest text-sm mb-2 text-stone-900">{item.title}</h4>
-                <p className="text-stone-500 text-[11px] font-medium leading-relaxed tracking-wide uppercase">{item.desc}</p>
-              </div>
+        {/* Contact Links */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <a href="https://wa.me/your_number" className="flex items-center p-8 rounded-3xl bg-[#111] border border-white/5 hover:border-[#C5A059]/30 transition-all group">
+            <div className="w-14 h-14 rounded-2xl bg-[#25D366]/5 flex items-center justify-center mr-6 group-hover:bg-[#25D366]/10 transition-colors">
+              <Lucide.MessageCircle size={28} className="text-[#25D366]" />
             </div>
-          ))}
+            <div className="flex-1">
+              <div className="font-bold text-lg tracking-tight italic font-serif">WhatsApp</div>
+              <div className="text-[9px] text-stone-500 uppercase tracking-widest mt-1 font-bold">1:1 实拍 & 全球免邮</div>
+            </div>
+            <Lucide.ChevronRight size={20} className="text-stone-800 group-hover:text-[#C5A059] group-hover:translate-x-1 transition-all" />
+          </a>
+
+          <a href="#" className="flex items-center p-8 rounded-3xl bg-[#111] border border-white/5 hover:border-[#C5A059]/30 transition-all group">
+            <div className="w-14 h-14 rounded-2xl bg-[#E1306C]/5 flex items-center justify-center mr-6 group-hover:bg-[#E1306C]/10 transition-colors">
+              <Lucide.Instagram size={28} className="text-[#E1306C]" />
+            </div>
+            <div className="flex-1">
+              <div className="font-bold text-lg tracking-tight italic font-serif">Instagram</div>
+              <div className="text-[9px] text-stone-500 uppercase tracking-widest mt-1 font-bold">灵感时刻 & 客户返图</div>
+            </div>
+            <Lucide.ChevronRight size={20} className="text-stone-800 group-hover:text-[#C5A059] group-hover:translate-x-1 transition-all" />
+          </a>
         </div>
       </section>
 
-      {/* 页脚 */}
-      <footer className="py-24 px-8 bg-black text-center relative overflow-hidden text-stone-600">
-        <div className="font-serif font-bold text-3xl text-white italic mb-4 tracking-tighter">
-          ROYAL<span className="text-[#C5A059]">ARCHIVE</span>
+      {/* Sticky Bottom Action */}
+      <div className="fixed bottom-0 left-0 right-0 p-6 z-[60] bg-gradient-to-t from-black via-black/80 to-transparent pt-12">
+        <div className="max-w-md mx-auto relative group">
+          <div className="absolute inset-0 bg-[#C5A059] blur-2xl opacity-10 group-hover:opacity-30 transition-opacity"></div>
+          <a 
+            href="https://wa.me/your_number" 
+            className="relative flex items-center justify-center gap-3 w-full bg-[#C5A059] text-black py-5 rounded-2xl font-bold uppercase text-[10px] tracking-[0.3em] shadow-2xl transition-all hover:bg-[#D4B478] active:scale-[0.98]"
+          >
+            <Lucide.MessageSquareText size={18} />
+            即刻联络专属主理人
+          </a>
         </div>
-        <p className="text-[8px] uppercase tracking-[0.8em] mb-12">Privé Atelier • Global Service</p>
-        <div className="text-[7px] tracking-[0.4em] font-black uppercase">
-          <p>© 2024 ROYALARCHIVE STUDIO • ALL RIGHTS RESERVED</p>
-        </div>
-      </footer>
-
-      {/* 悬浮条 */}
-      <div className="fixed bottom-0 left-0 right-0 p-6 z-50">
-        <div className="absolute inset-0 bg-black/80 backdrop-blur-3xl border-t border-white/5 -z-10"></div>
-        <a 
-          href="https://wa.me/YOUR_NUMBER"
-          className="bg-[#25D366] text-white py-5 rounded-2xl font-bold flex items-center justify-center gap-3 shadow-[0_-10px_40px_rgba(37,211,102,0.4)] active:scale-[0.98] transition-all uppercase tracking-[0.2em] text-[13px] italic"
-        >
-          <Lucide.MessageCircle size={22} fill="white" className="text-green-600" />
-          立即咨询 1:1 实拍报价
-        </a>
       </div>
     </div>
   );
