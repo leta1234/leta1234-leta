@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>AlphaQubit: Quantum Error Decoding</title>
+    <title>Royal Archive | 顶级奢侈品私人定制画册</title>
+    <meta name="description" content="Royal Archive 专注于全球顶级奢侈品艺术杰作，提供 1:1 原厂级材质私人定制与全球匿名交付。">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script>
       tailwind.config = {
         theme: {
@@ -17,10 +18,10 @@
               sans: ['"Inter"', 'sans-serif'],
             },
             colors: {
-              nobel: {
+              brand: {
                 gold: '#C5A059',
-                dark: '#1a1a1a',
-                cream: '#F9F8F4',
+                dark: '#080808',
+                light: '#F9F8F4',
               }
             }
           }
@@ -30,36 +31,43 @@
     <style>
       html {
         scroll-behavior: smooth;
-        scroll-padding-top: 100px;
+        -webkit-font-smoothing: antialiased;
       }
       body {
-        background-color: #F9F8F4;
-        color: #1a1a1a;
+        background-color: #080808;
+        color: #F9F8F4;
+        margin: 0;
       }
-      @media print {
-        nav, footer, button {
-          display: none !important;
-        }
+      ::-webkit-scrollbar {
+        width: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #080808;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #C5A059;
+        border-radius: 10px;
       }
     </style>
-  <script type="importmap">
+    <script type="importmap">
 {
   "imports": {
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "@react-three/fiber": "https://aistudiocdn.com/@react-three/fiber@^9.4.0",
-    "@react-three/drei": "https://aistudiocdn.com/@react-three/drei@^10.7.7",
-    "three": "https://aistudiocdn.com/three@^0.181.1",
-    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.553.0"
+    "react": "https://esm.sh/react@19.0.0",
+    "react-dom": "https://esm.sh/react-dom@19.0.0",
+    "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
+    "lucide-react": "https://esm.sh/lucide-react@0.473.0",
+    "framer-motion": "https://esm.sh/framer-motion@11.15.0",
+    "@react-three/fiber": "https://esm.sh/@react-three/fiber@^9.5.0",
+    "@react-three/drei": "https://esm.sh/@react-three/drei@^10.7.7",
+    "three": "https://esm.sh/three@^0.182.0",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/"
   }
 }
 </script>
-<link rel="stylesheet" href="/index.css">
-</head>
+  </head>
   <body>
     <div id="root"></div>
-  <script type="module" src="/index.tsx"></script>
-</body>
+    <script type="module" src="./index.tsx"></script>
+  </body>
 </html>
